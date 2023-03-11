@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">NumbersAPITestTask</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="back">Back</string>
+    <string name="random_fact">Get Random Fact</string>
+    <string name="get_a_fact">Get A Fact</string>
+    <string name="enter_number_here">Enter Number Here</string>
 </resources>
