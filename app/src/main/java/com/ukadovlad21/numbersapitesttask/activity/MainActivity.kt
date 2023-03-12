@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
 import com.ukadovlad21.numbersapitesttask.R
+import com.ukadovlad21.numbersapitesttask.db.NumbersDatabase
 import com.ukadovlad21.numbersapitesttask.repository.NumbersRepository
 import com.ukadovlad21.numbersapitesttask.usecase.CheckInternetStateUseCase
 import com.ukadovlad21.numbersapitesttask.vm.MainViewModel
@@ -23,7 +24,10 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        repository = NumbersRepository(checkInternetStateUseCase)
+        repository = NumbersRepository(checkInternetStateUseCase, NumbersDatabase(this))
         setContentView(R.layout.activity_main)
+
+
     }
 }
+const val DETAILS: String = "DETAILS"

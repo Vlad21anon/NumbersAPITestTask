@@ -1,6 +1,9 @@
 package com.ukadovlad21.numbersapitesttask.repository
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.ukadovlad21.numbersapitesttask.db.NumbersDao
+import com.ukadovlad21.numbersapitesttask.db.NumbersDatabase
 import com.ukadovlad21.numbersapitesttask.model.NumberData
 import com.ukadovlad21.numberstesttask.api.RetrofitInstance
 import com.ukadovlad21.numbersapitesttask.usecase.CheckInternetStateUseCase
@@ -10,8 +13,16 @@ import java.io.IOException
 
 class NumbersRepository(
     private val checkInternetStateUseCase: CheckInternetStateUseCase,
+    private val db: NumbersDatabase
 ) {
 
+    fun getAllNumbersDataLiveData(): LiveData<List<NumberData>> =
+        db.getNumbersDao().getAllNumbersDataLiveData()
+
+
+    suspend fun upsert(item: NumberData) {
+        db.getNumbersDao().upsert(item)
+    }
 
     suspend fun getByNumber(string: String): Response<NumberData> {
         return RetrofitInstance.api.getByNumber(string)
@@ -50,6 +61,7 @@ class NumbersRepository(
 
         return Resource.Error(response.message())
     }
+
 
 
 }
